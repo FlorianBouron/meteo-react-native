@@ -1,23 +1,46 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {View, StyleSheet, StatusBar} from 'react-native'
+import {TabNavigator} from 'react-navigation'
+import About from './components/About'
+import Search from './components/Search'
+
+
+const Tabs = TabNavigator(
+    {
+        Search: {screen: Search},
+        About: {screen: About}
+    },
+    {
+        tabBarPosition: 'bottom',
+        tabBarOptions: {
+            showIcon: true,
+            showLabel: false,
+            indicatorStyle: {
+                height: 2,
+                backgroundColor: "#FFFFFF"
+            },
+            style: {
+                backgroundColor: "#A2273C",
+                borderTopWidth: 1,
+                borderColor: "#3F101C"
+            }
+        }
+    }
+);
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+      <View style={style.view}>
+          <StatusBar hidden={true} />
+          <Tabs/>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+const style = StyleSheet.create({
+    view: {
+        flex: 1
+    }
 });
